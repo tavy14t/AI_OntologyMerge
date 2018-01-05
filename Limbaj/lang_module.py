@@ -3,10 +3,6 @@ from googletrans import Translator
 import requests
 from bs4 import BeautifulSoup
 
-term1 = 'mâncare'
-term2 = 'aliment'
-
-
 def compute_name_score(str1, str2):
     # Names shorter than 3 letters are ignored
     if len(str1) < 3 or len(str2) < 3:
@@ -52,11 +48,9 @@ def compute_definition_score(str1, str2):
                 reliability = reliability + 1
 
     strength = reliability / min(len(def1), len(def2))
-    print(reliability)
-    print(strength)
-    print(strength * reliability)
     print(def1)
     print(def2)
+    return strength * reliability
 
 
 def letter_match_length(str1, str2):
@@ -102,7 +96,30 @@ def remove_morph_words(wordlist):
         elif wordlist[i].endswith('ds') or wordlist[i].endswith('ts'):
             wordlist[i] = wordlist[i][:-1]
 
-    return wordlist
+    output = []
+    for word in wordlist:
+        if word != 'a' and word != 'by' and word != 'the' and word != 'as' and word != 'an'\
+            and word != 'is' and word != 'of' and word != 'in' and word != 'and':
+                output.append(word)
+    return output
+
+def get_match_score(str1, str2):
+    namescore = compute_name_score(str1, str2)
+    defscore = compute_definition_score(str1, str2)
+    if namescore == 0:
+        namescore = 1
+    if defscore == 0:
+        defscore = 1
+    return namescore**(1/2) * defscore
 
 
-compute_definition_score(term1, term2)
+input_file = open('input.txt', 'r', encoding='utf-8')
+words = input_file.read().splitlines()
+#Remove unicode flag
+words[0] = words[0][1:]
+input_file.close()
+
+for i in range(0, len(words)):
+    for j in range(i, len(words)):
+        if i != j:
+            print(get_match_score(words[i], words[j]))
