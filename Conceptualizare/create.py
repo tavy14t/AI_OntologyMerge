@@ -1,14 +1,20 @@
+import os
 from owlready2 import *
 
-onto1 = get_ontology("file:///home/vm/onto/1.owl")
-onto2 = get_ontology("file:///home/vm/onto/2.owl")
+cwd = os.getcwd()
+onto1 = get_ontology("file://"+cwd+"//onto/1.owl")
+onto2 = get_ontology("file://"+cwd+"//onto/2.owl")
 
 with onto1:
-    class Animal(Thing):
+    class Miscatoare(Thing):
         pass
-    class Pisica(Animal):
+    class Animal(Miscatoare):
+        pass
+    class Mixer(Miscatoare):
         pass
     class Caine(Animal):
+        pass
+    class Pisica(Animal):
         pass
     class Ocicat(Pisica):
         pass
@@ -27,6 +33,8 @@ with onto2:
     class Moarta(Entitate):
         pass
     class Mamifer(Vie):
+        pass
+    class Pasare(Vie):
         pass
     class Pisica(Mamifer):
         pass
