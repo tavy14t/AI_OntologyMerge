@@ -20,7 +20,7 @@ def singular(words):
 def normal(words):
     lem = nltk.WordNetLemmatizer()
     normals = [lem.lemmatize(word.lower()).encode('ascii','ignore') for word in words] #lemmatize functioneaza mai bn pe lower,
-    return normals                                                                     #apoi am convertit la loc in ascii, deoarece
+    return normals                                                                     #apoi am convertit la loc in ascii,
                                                                                        #deoarece lemmatize le face unicode.
 
 print "singular: " , singular(content)
