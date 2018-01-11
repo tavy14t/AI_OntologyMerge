@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<rdf:RDF xml:base="file://M:\Inteligenta_Artificiala\AI_OntologyMerge\Conceptualizare//onto/1.owl"
+         xmlns="file://M:\Inteligenta_Artificiala\AI_OntologyMerge\Conceptualizare//onto/1.owl#"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#">
+
+<owl:Ontology rdf:about="file://M:\Inteligenta_Artificiala\AI_OntologyMerge\Conceptualizare//onto/1.owl"/>
+
+<owl:Class rdf:about="#Miscatoare">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Animal">
+  <rdfs:subClassOf rdf:resource="#Miscatoare"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Mixer">
+  <rdfs:subClassOf rdf:resource="#Miscatoare"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Caine">
+  <rdfs:subClassOf rdf:resource="#Animal"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Pisica">
+  <rdfs:subClassOf rdf:resource="#Animal"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Ocicat">
+  <rdfs:subClassOf rdf:resource="#Pisica"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Nyan">
+  <rdfs:subClassOf rdf:resource="#Pisica"/>
+</owl:Class>
+
+<owl:Class rdf:about="#BorderCollie">
+  <rdfs:subClassOf rdf:resource="#Caine"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Shiba">
+  <rdfs:subClassOf rdf:resource="#Caine"/>
+</owl:Class>
+
+
+</rdf:RDF>

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<rdf:RDF xml:base="file://M:\Inteligenta_Artificiala\AI_OntologyMerge\Conceptualizare//onto/2.owl"
+         xmlns="file://M:\Inteligenta_Artificiala\AI_OntologyMerge\Conceptualizare//onto/2.owl#"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#">
+
+<owl:Ontology rdf:about="file://M:\Inteligenta_Artificiala\AI_OntologyMerge\Conceptualizare//onto/2.owl"/>
+
+<owl:Class rdf:about="#Entitate">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Vie">
+  <rdfs:subClassOf rdf:resource="#Entitate"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Moarta">
+  <rdfs:subClassOf rdf:resource="#Entitate"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Mamifer">
+  <rdfs:subClassOf rdf:resource="#Vie"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Pasare">
+  <rdfs:subClassOf rdf:resource="#Vie"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Pisica">
+  <rdfs:subClassOf rdf:resource="#Mamifer"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Electric">
+  <rdfs:subClassOf rdf:resource="#Moarta"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Mecanic">
+  <rdfs:subClassOf rdf:resource="#Moarta"/>
+</owl:Class>
+
+
+</rdf:RDF>
