@@ -1,0 +1,9 @@
+Mod de utilizare:
+variable=extract_relations(lista_termeni_1,lista_termeni_2,def_folder_path):
+Ex:#li=extract_relations(["pacient","Paralizia","compresiunii","intracraniene","sanguin cerebral","craniu","cerebral","Răspunsul"],
+                      ["tensiune","artere","criteriu","trunchi","vasculare","vase","trunchiul cerebral "],"E:\manual")
+    print (li)
+Ofera o lista de tuple de genu (termen1,relatie,termen2)
+Vedeti trebuie specificata calea catre un folder cu documente de tip .docx de unde functia va prelua textul pt scoaterea relatiilor
+
+PS:(Da Jimmy e in python 3.6)
