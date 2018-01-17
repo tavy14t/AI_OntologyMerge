@@ -8,6 +8,8 @@ onto2 = get_ontology("file://"+cwd+"//onto/2.owl")
 with onto1:
     class Miscatoare(Thing):
         pass
+    class Inghetata(Miscatoare):
+        pass
     class Animal(Miscatoare):
         pass
     class Mixer(Miscatoare):

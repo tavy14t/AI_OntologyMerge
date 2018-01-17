@@ -1,12 +1,10 @@
 <?xml version="1.0"?>
-<rdf:RDF xml:base="file://M:\Inteligenta_Artificiala\AI_OntologyMerge\Conceptualizare/onto/result.owl"
-         xmlns="file://M:\Inteligenta_Artificiala\AI_OntologyMerge\Conceptualizare/onto/result.owl#"
+<rdf:RDF xml:base="file://onto/result.owl"
+         xmlns="file://onto/result.owl#"
          xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
          xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
          xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
          xmlns:owl="http://www.w3.org/2002/07/owl#">
-
-<owl:Ontology rdf:about="file://M:\Inteligenta_Artificiala\AI_OntologyMerge\Conceptualizare/onto/result.owl"/>
 
 <owl:Class rdf:about="#Miscatoare">
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
@@ -16,20 +14,38 @@
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
 </owl:Class>
 
-<owl:Class rdf:about="#Moarta">
+<owl:Class rdf:about="#Vie">
+  <rdfs:subClassOf rdf:resource="#Miscatoare"/>
   <rdfs:subClassOf rdf:resource="#Entitate"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Mamifer">
+  <rdfs:subClassOf rdf:resource="#Vie"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Pasare">
+  <rdfs:subClassOf rdf:resource="#Vie"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Inghetata">
+  <rdfs:subClassOf rdf:resource="#Miscatoare"/>
+  <rdfs:subClassOf rdf:resource="#Entitate"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Electric">
+  <rdfs:subClassOf rdf:resource="#Inghetata"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Mecanic">
-  <rdfs:subClassOf rdf:resource="#Moarta"/>
+  <rdfs:subClassOf rdf:resource="#Inghetata"/>
 </owl:Class>
 
-<owl:Class rdf:about="#Vie">
-  <rdfs:subClassOf rdf:resource="#Entitate"/>
+<owl:Class rdf:about="#Mixer">
+  <rdfs:subClassOf rdf:resource="#Electric"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Caine">
-  <rdfs:subClassOf rdf:resource="file://M:\Inteligenta_Artificiala\AI_OntologyMerge\Conceptualizare//onto/2.owl#Mamifer"/>
+  <rdfs:subClassOf rdf:resource="#Mamifer"/>
 </owl:Class>
 
 <owl:Class rdf:about="#BorderCollie">
@@ -40,16 +56,8 @@
   <rdfs:subClassOf rdf:resource="#Caine"/>
 </owl:Class>
 
-<owl:Class rdf:about="#Pasare">
-  <rdfs:subClassOf rdf:resource="#Vie"/>
-</owl:Class>
-
-<owl:Class rdf:about="#Mixer">
-  <rdfs:subClassOf rdf:resource="file://M:\Inteligenta_Artificiala\AI_OntologyMerge\Conceptualizare//onto/2.owl#Electric"/>
-</owl:Class>
-
 <owl:Class rdf:about="#Pisica">
-  <rdfs:subClassOf rdf:resource="file://M:\Inteligenta_Artificiala\AI_OntologyMerge\Conceptualizare//onto/2.owl#Mamifer"/>
+  <rdfs:subClassOf rdf:resource="#Mamifer"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Ocicat">
