@@ -1,4 +1,3 @@
-import os
 import types
 from owlready2 import *
 
@@ -7,6 +6,33 @@ ontology1  = None
 ontology2  = None
 resultOntology = None
 entities = {}
+
+solvedRelations = [];
+
+def relationsCustomSort(relation):
+    val = {}
+    val["synonym"] = 5
+    val["is_included"] = 2.5
+    val["includes"] = 2.5
+    return (entities[relation[0].upper()] + entities[relation[2].upper()]) * 10 - val[relation[1]]
+    #return min((entities[relation[0].upper()], entities[relation[2].upper()]))*val[relation[1]]
+
+def generateRelations():
+    global resultOntology
+    
+    with resultOntology:
+        class are_sinonim(ObjectProperty):
+            domain = [Thing]
+            range  = [Thing]
+
+def solveParrent(ontologyClass):
+    relToSolve = []
+    for rel in relations:
+        if rel[0].upper == ontologyClass.__name__.upper() and not rel in solvedRelations:
+            relToSolve.append(rel)
+        if rel[2].upper == ontologyClass.__name__.upper() and not rel in solvedRelations:
+            relToSolve.append(rel)
+    
 
 def addSynonymClasses(ontology1Class, ontology2Class, ontology1Score, ontology2Score):
     global resultOntology
@@ -56,13 +82,44 @@ def addSynonymClasses(ontology1Class, ontology2Class, ontology1Score, ontology2S
         else:
             with resultOntology:
                 NewClass = types.new_class(newClassName, ontologyParrentClasses, {})
-        
+
+        if ontology1Score >= ontology2Score:
+            with resultOntology:
+                PropertyDummyClass = types.new_class(ontology2Class.__name__, (Thing, ), {})
+                NewClass.are_sinonim.append(PropertyDummyClass)
+        else:
+            with resultOntology:
+                PropertyDummyClass = types.new_class(ontology1Class.__name__, (Thing, ), {})
+                NewClass.are_sinonim.append(PropertyDummyClass)
+
         for ontologySubclass in ontology1Class.subclasses():
             if not ontologySubclass.__name__ == ontology1Class.__name__:
                 recursiveCopyUnproblematic(ontologySubclass, NewClass)
         for ontologySubclass in ontology2Class.subclasses():
             if not ontologySubclass.__name__ == ontology2Class.__name__:
-                recursiveCopyUnproblematic(ontologySubclass, NewClass)                      
+                recursiveCopyUnproblematic(ontologySubclass, NewClass)
+                      
+    elif not ontology1ResultClass == None and not ontology2ResultClass == None:
+        #Ambele clase exista
+        if ontology1Score > ontology2Score:
+            ontology1ResultClass.are_sinonim.append(ontology2ResultClass)
+            for ontologySubclass in ontology2ResultClass.subclasses():
+                if not ontologySubclass.__name__ == ontology2ResultClass.__name__:
+                    ontologySubclass.is_a.remove(ontology2ResultClass)
+                    ontologySubclass.is_a.append(ontology1ResultClass)
+            ontology2ResultClass.is_a.remove(Thing)
+        else:
+            ontology2ResultClass.are_sinonim.append(ontology1ResultClass)
+            for ontologySubclass in ontology1ResultClass.subclasses():
+                if not ontologySubclass.__name__ == ontology1ResultClass.__name__:
+                    ontologySubclass.is_a.remove(ontology1ResultClass)
+                    ontologySubclass.is_a.append(ontology2ResultClass)
+            ontology1ResultClass.is_a.remove(Thing)
+
+    elif not ontology1ResultClass == None:
+        print("Prima exista")
+    else:
+        print("A doua exista")  
 
     return NewClass
 
@@ -95,6 +152,7 @@ def solveSynonyms(relation):
             if ontologySubclass.__name__.upper() == rel[2].upper():
                 ontology2Score += valScoreDestin[rel[1]]
     addSynonymClasses(ontology1Class, ontology2Class, ontology1Score, ontology2Score)
+    solvedRelations.append(relation)
 
 def solveIsIncluded(relation):    
 
@@ -128,6 +186,9 @@ def solveIsIncluded(relation):
                 if not ontologySubclass.__name__ == ontology1Class.__name__:
                     recursiveCopyUnproblematic(ontologySubclass, NewClass)                
     
+    solvedRelations.append(relation) 
+    return NewClass   
+
 def solveIncludes(relation):
     pass
 
@@ -136,16 +197,8 @@ def solveRelation(relation):
         return solveSynonyms(relation)
     elif relation[1] == "is_included":
         return solveIsIncluded(relation)
-    elif relation[1] == "includes":
+    else:
         return solveIncludes(relation)
-
-def relationsCustomSort(relation):
-    val = {}
-    val["synonym"] = 5
-    val["is_included"] = 2.5
-    val["includes"] = 2.5
-    return (entities[relation[0].upper()] + entities[relation[2].upper()]) * 10 - val[relation[1]]
-    #return min((entities[relation[0].upper()], entities[relation[2].upper()]))*val[relation[1]]
 
 def browseGraphRecursion(ontologyClass, level):
     for ontologySubclass in ontologyClass.subclasses():
@@ -241,12 +294,13 @@ def mergeOntologies(ontology1Path, ontology2Path, ontologyRelations, resultPath)
     #Parcurgerea grafului pe latime si salvarea informatiei
     #Sortarea relatiilor in functie de inaltimea termenilor
     browseGraph()
+    generateRelations()
     relations = list(sorted(relations, key=relationsCustomSort))
-    print(relations)
-
     ### Startul Algoritmului ###
 
     '''
+       To fix:
+        
        In cazul cautarilor in ontologia rezultat este nevoie de o verificare suplimentara
        in blockul de try, catch pentru a ne asigura ca gasim ontologia potrivita ci nu 
        una gresita care sa faca match peste masca "*"+target.__name__
@@ -258,6 +312,7 @@ def mergeOntologies(ontology1Path, ontology2Path, ontologyRelations, resultPath)
 
     #Incepem rezolvarea relatiilor in ordinea stabilita anterior    
     for rel in relations:
+        if rel not in solvedRelations:
             solveRelation(rel)
        
     #Salveaza ontologia rezultata

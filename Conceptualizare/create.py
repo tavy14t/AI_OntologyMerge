@@ -46,4 +46,3 @@ with onto2:
         pass
 
 onto1.save(file="onto/1.owl")
-onto2.save(file="onto/2.owl")
