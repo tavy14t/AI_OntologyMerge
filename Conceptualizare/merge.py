@@ -8,6 +8,7 @@ resultOntology = None
 entities = {}
 
 solvedRelations = [];
+equivalentOntologies = {};
 
 def relationsCustomSort(relation):
     val = {}
@@ -21,7 +22,7 @@ def generateRelations():
     global resultOntology
     
     with resultOntology:
-        class are_sinonim(ObjectProperty):
+        class echivalent(ObjectProperty):
             domain = [Thing]
             range  = [Thing]
 
@@ -60,7 +61,10 @@ def addSynonymClasses(ontology1Class, ontology2Class, ontology1Score, ontology2S
                         resultOntologyParrent = min(resultOntology.search(iri = "*" + ontologyAncestor.__name__))
                         ontologyParrentClasses.append(resultOntologyParrent)                    
                     except Exception:
-                        pass
+                        resultOntologyParrent = solveParrent(ontologyAncestor)
+                        if not resultOntologyParrentClasses.append(resultOntologyParrent):
+                            solveParrent(ontologyAncestor)
+
         for ontologyAncestor in ontology2Class.ancestors():
             for ontologyAncestorSubclass in ontologyAncestor.subclasses():
                 if ontologyAncestorSubclass.__name__ == ontology2Class.__name__:
@@ -68,7 +72,9 @@ def addSynonymClasses(ontology1Class, ontology2Class, ontology1Score, ontology2S
                         resultOntologyParrent = min(resultOntology.search(iri = "*" + ontologyAncestor.__name__))
                         ontologyParrentClasses.append(resultOntologyParrent)
                     except Exception:
-                        pass        
+                        resultOntologyParrent = solveParrent(ontologyAncestor)
+                        if not resultOntologyParrent == None:
+                            ontologyParrentClasses.append(resultOntologyParrent)     
 
         newClassName = None
         if ontology1Score >= ontology2Score:
@@ -86,11 +92,13 @@ def addSynonymClasses(ontology1Class, ontology2Class, ontology1Score, ontology2S
         if ontology1Score >= ontology2Score:
             with resultOntology:
                 PropertyDummyClass = types.new_class(ontology2Class.__name__, (Thing, ), {})
-                NewClass.are_sinonim.append(PropertyDummyClass)
+                NewClass.echivalent.append(PropertyDummyClass)
+                equivalentOntologies[PropertyDummyClass] = NewClass
         else:
             with resultOntology:
                 PropertyDummyClass = types.new_class(ontology1Class.__name__, (Thing, ), {})
-                NewClass.are_sinonim.append(PropertyDummyClass)
+                NewClass.echivalent.append(PropertyDummyClass)
+                equivalentOntologies[PropertyDummyClass] = NewClass
 
         for ontologySubclass in ontology1Class.subclasses():
             if not ontologySubclass.__name__ == ontology1Class.__name__:
@@ -102,14 +110,14 @@ def addSynonymClasses(ontology1Class, ontology2Class, ontology1Score, ontology2S
     elif not ontology1ResultClass == None and not ontology2ResultClass == None:
         #Ambele clase exista
         if ontology1Score > ontology2Score:
-            ontology1ResultClass.are_sinonim.append(ontology2ResultClass)
+            ontology1ResultClass.sinonim.append(ontology2ResultClass)
             for ontologySubclass in ontology2ResultClass.subclasses():
                 if not ontologySubclass.__name__ == ontology2ResultClass.__name__:
                     ontologySubclass.is_a.remove(ontology2ResultClass)
                     ontologySubclass.is_a.append(ontology1ResultClass)
             ontology2ResultClass.is_a.remove(Thing)
         else:
-            ontology2ResultClass.are_sinonim.append(ontology1ResultClass)
+            ontology2ResultClass.sinonim.append(ontology1ResultClass)
             for ontologySubclass in ontology1ResultClass.subclasses():
                 if not ontologySubclass.__name__ == ontology1ResultClass.__name__:
                     ontologySubclass.is_a.remove(ontology1ResultClass)
@@ -117,9 +125,9 @@ def addSynonymClasses(ontology1Class, ontology2Class, ontology1Score, ontology2S
             ontology1ResultClass.is_a.remove(Thing)
 
     elif not ontology1ResultClass == None:
-        print("Prima exista")
+        pass
     else:
-        print("A doua exista")  
+        pass
 
     return NewClass
 
@@ -178,19 +186,73 @@ def solveIsIncluded(relation):
 
     if not resultOntologyClass2 == None:
         if not resultOntologyClass1 == None:
-            resultOntologyClass1.is_a.append(resultOntologyClass2)
+            with resultOntology:
+                resultOntologyClass1.is_a.append(resultOntologyClass2)
         else:
             with resultOntology:
                 NewClass = types.new_class(ontology1Class.__name__, (resultOntologyClass2, ), {})
             for ontologySubclass in ontology1Class.subclasses():
                 if not ontologySubclass.__name__ == ontology1Class.__name__:
-                    recursiveCopyUnproblematic(ontologySubclass, NewClass)                
-    
+                    recursiveCopyUnproblematic(ontologySubclass, NewClass)
+    else:
+        resultOntologyClass2 = solveParrent(ontology2Class)                
+        if not resultOntologyClass2 == None:
+            if not resultOntologyClass1 == None:
+                with resultOntology:
+                    resultOntologyClass1.is_a.append(resultOntologyClass2)
+            else:
+                with resultOntology:
+                    NewClass = types.new_class(ontology1Class.__name__, (resultOntologyClass2, ), {})
+                for ontologySubclass in ontology1Class.subclasses():
+                    if not ontologySubclass.__name__ == ontology1Class.__name__:
+                        recursiveCopyUnproblematic(ontologySubclass, NewClass)       
+
     solvedRelations.append(relation) 
     return NewClass   
 
 def solveIncludes(relation):
-    pass
+    ontology1Class = None
+    ontology2Class = None
+    resultOntologyClass1 = None
+    resultOntologyClass2 = None
+    ontology1Class = min(ontology1.search(iri = "*" + relation[0]))
+    ontology2Class = min(ontology2.search(iri = "*" + relation[2]))
+    try:
+        resultOntologyClass1 = min(resultOntology.search(iri = "*" + relation[0]))
+    except Exception:
+        pass
+    try:
+        resultOntologyClass2 = min(resultOntology.search(iri = "*" + relation[2]))
+    except Exception:
+        pass
+
+    if resultOntologyClass1 in equivalentOntologies:
+        resultOntologyClass1 = equivalentOntologies[resultOntologyClass1]
+    
+    if not resultOntologyClass1 == None:
+        if not resultOntologyClass2 == None:
+            with resultOntology:
+                resultOntologyClass2.is_a.append(resultOntologyClass1) 
+        else:
+            with resultOntology:
+                NewClass = types.new_class(ontology2Class.__name__, (resultOntologyClass1, ), {})
+            for ontologySubclass in ontology2Class.subclasses():
+                if not ontologySubclass.__name__ == ontology2Class.__name__:
+                    recursiveCopyUnproblematic(ontologySubclass, NewClass)
+    else:
+        resultOntologyClass1 = solveParrent(ontology1Class)
+        if not resultOntologyClass1 == None:
+            if not resultOntologyClass2 == None:
+                with resultOntology:
+                    resultOntologyClass1.is_a.append(resultOntologyClass1)
+            else:
+                with resultOntology:
+                    NewClass = types.new_class(ontology1Class.__name__, (resultOntologyClass1, ), {})
+                for ontologySublcass in ontology2Class.subclasses():
+                    if not ontologySubclass.__name__ == ontology2Class.__name__:
+                        recursiveCopyUnproblematic(ontologySubclass, NewClass)  
+    solvedRelations.append(relation)
+    return NewClass
 
 def solveRelation(relation):
     if relation[1] == "synonym":
@@ -296,6 +358,7 @@ def mergeOntologies(ontology1Path, ontology2Path, ontologyRelations, resultPath)
     browseGraph()
     generateRelations()
     relations = list(sorted(relations, key=relationsCustomSort))
+    print(relations)
     ### Startul Algoritmului ###
 
     '''
