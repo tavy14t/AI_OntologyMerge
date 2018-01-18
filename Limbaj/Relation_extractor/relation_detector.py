@@ -3,7 +3,7 @@
 import re
 
 def get_propozitii(text):
-    list_of_prop=re.split(";|\\.|\\!|\\?",text)
+    list_of_prop=re.split(";|\\.|\\!|\\?|\\n",text)
     return list_of_prop
 #--------------------------------------------------
 def get_good_prop(propozitii,termeni_1,termeni_2):
@@ -19,7 +19,7 @@ def get_good_prop(propozitii,termeni_1,termeni_2):
 #print(get_good_prop(prop,["intracraniene","sanguin cerebral"],["artere","trunchi","vasculare"]))
 #---------------------------------------------------
 def include_relation(term1,term2,prop):
-    filter_1 = ["include"," are ","detine ","cuprinde ","înglobează ","definesc ","defineste ","includ ","comasează "]
+    filter_1 = ["include"," are ","detine ","cuprinde ","înglobează ","definesc ","defineste ","includ ","comasează ","acoperă "]
     try:
         indx_1 = re.search(term1, prop).span()[1]
         prop = prop[indx_1:]
@@ -53,7 +53,7 @@ def part_of_relation(term1,term2,prop):
             index_fi-=1
             aux=prop[index_fi:]
             for fi_2 in filter_2:
-                if re.search(fi_2+" "+term2,aux) or re.search(term2+" "+fi_2,aux):
+                if re.search(fi_2+term2,aux) or re.search(term2+fi_2,aux):
                     return [(term1,"is_included",term2)]
         except:
             pass
@@ -69,5 +69,4 @@ def get_relations(li_term_1,li_term_2,text):
                     relations+=part_of_relation(t1,t2,prop)
                     relations+=include_relation(t1,t2,prop)
     return relations
-#print(get_relations(["intracraniene","sanguin cerebral"],["artere","trunchi","vasculare"],"Fluxul sanguin cerebral este asigurat prin cele două artere carotide interne şi de cele două artere vertebrale care se unesc în trunchiul vertebrobazilar. Ramificaţiile intracraniene ale acestor artere sunt de tip terminal ceea ce conferă o gravitate crescută ocluziilor vasculare cerebrale. În plus celula nervoasă are o sensibilitate deosebită la hipoxie (moarte celulară în 3-5 minute de la oprirea circulaţiei). Hipoperfuzia este de asemeni urmată de consecinţe. "))
-
+#print(get_relations(["Caine","Pisica","Mixer","Vietuitoare"],["Electric","Animal","vasculare"],"Pasarea este un Animal.O vietate Moarta este Inghetata.Regnul Animal include specii precum Pisica si Canine.Mixer este un Electric.Caine este un Animal.Se zice ca Pisica face parte din Animal.Clasa Vietuitoarelor include Animal."))

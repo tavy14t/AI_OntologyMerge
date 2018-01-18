@@ -68,6 +68,9 @@ def extract_relations(termeni_1,termeni_2,def_folder_path):
     for rez in results:
         for tup in rez:
             final_results.append(tup)
+    final_results = set(final_results)
+    final_results = list(final_results)
     return final_results
 
-#extract_relations(["pacient","Paralizia","compresiunii","intracraniene","sanguin cerebral","craniu","cerebral","Răspunsul"],["tensiune","artere","criteriu","trunchi","vasculare","vase","trunchiul cerebral "],"E:\manual")
+#print(extract_relations(["pacient","Paralizia","compresiunii","intracraniene","sanguin cerebral","craniu","cerebral","Răspunsul"],["tensiune","artere","criteriu","trunchi","vasculare","vase","trunchiul cerebral "],"E:\manual"))
+print(extract_relations(["Caine","Pisica","Mixer","Vietuitoare"],["Electric","Animal","vasculare"],"E:\manual"))
