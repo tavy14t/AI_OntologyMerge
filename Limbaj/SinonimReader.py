@@ -1,5 +1,5 @@
 import urllib2
-from bs4 import BeautifulSoup
+import BeautifulSoup
 import re
 import unicodedata
 
@@ -13,7 +13,7 @@ def access_sinonim_site(word):
         return 'bad'
 
 def extract_sinonims(html):
-    soup = BeautifulSoup(html,'html.parser')
+    soup = BeautifulSoup.BeautifulSoup(html)
     try:
         raw_sinonims=soup.find("div",attrs={"class":"tip-definitie"}).find('p')
         sinonims = raw_sinonims.getText(separator=u'+')
@@ -47,25 +47,24 @@ def proccess_sinonims(sinonims):
             good_sinonims.append(x)
     return good_sinonims
 
-def get_list(l1,l2):
-	l3=[]
-	for word in l1:
-		site=access_sinonim_site(word)
-		if site is "bad":
-			return []
-		else:
-			raw_sino=extract_sinonims(site)
-			sino=proccess_sinonims(raw_sino)
-			for word2 in l2:
-				for i in range(0,len(sino)):
-					if word2==sino[i]:
-						if (word+","+word2)not in l3 and (word2+","+word) not in l3:
-							l3.append(word+","+ word2)
-	return l3;
+def get_sinonims(word,how_many):
+    site=access_sinonim_site(word)
 
-
+    if site is "bad":
+        return []
+    else:
+        raw_sino=extract_sinonims(site)
+        sino=proccess_sinonims(raw_sino)
+        if how_many>0:
+            if how_many<len(sino):
+                sinonims=[]
+                for i in range(0,how_many):
+                    sinonims.append(sino[i])
+                return sinonims
+            else:
+                return sino
+        else:
+            return []
 
 #Exemplu:
-print(get_list(["briceag", "fericit"],["norocit","brisca"]))
-
-
+print get_sinonims('briceag',2)

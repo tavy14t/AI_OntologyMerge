@@ -48,8 +48,6 @@ def compute_definition_score(str1, str2):
                 reliability = reliability + 1
 
     strength = reliability / min(len(def1), len(def2))
-    print(def1)
-    print(def2)
     return strength * reliability
 
 
@@ -110,16 +108,19 @@ def get_match_score(str1, str2):
         namescore = 1
     if defscore == 0:
         defscore = 1
-    return namescore**(1/2) * defscore
+    return namescore**(1/2) * defscore *2
+
+def get_synonymus(l1,l2):
+    l=[]
+    for i in  l1:
+        for j in l2:
+            if (get_match_score(i,j))>= 12:
+                l.append((i,"is_synonymous",j))
+    return l
 
 
-input_file = open('input.txt', 'r', encoding='utf-8')
-words = input_file.read().splitlines()
-#Remove unicode flag
-words[0] = words[0][1:]
-input_file.close()
+#Exemplu:
 
-for i in range(0, len(words)):
-    for j in range(i, len(words)):
-        if i != j:
-            print(get_match_score(words[i], words[j]))
+#l1 = ["vesel","prieten"]
+#l2 = ["amic","trist"]
+#print(get_synonymus(l1,l2))

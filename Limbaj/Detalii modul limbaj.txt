@@ -1,0 +1,5 @@
+Modulul nostru va primi ca input doua liste de termeni, iar ceea ce vom returna va fi 
+o lista de tuple de forma: (termen1, "is_included", termen2)/(termen1,"includes",termen2)/
+termen1,"is_synonymous", termen2)
+
+Ne vom folosi de manual si de dex pentru a obtine cele trei tipuri de relatii.
