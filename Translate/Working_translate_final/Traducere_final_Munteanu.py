@@ -19,7 +19,7 @@ def f_traducere(rand):
     flag = bool (re.search(r'"#.*"', rand))    #daca nu gaseste expresie o sa crape cand folosim functia .gropu(0) de mai jos
     if flag == 1 :
         to_replace = re.search(r'"#.*"', rand).group(0).replace('_',' ')     #cautam expresia in linia din fisier
-        translated = translate(to_replace, 'ro', 'en')     #traducerea efectiva
+        translated = translate(to_replace, 'ro', 'en').replace(' ','_')     #traducerea efectiva
         translated2 = unidecode.unidecode(translated)  #scapam de diacritice
         rand = re.sub(r'"#.*"', translated2, rand)     #inlocuim in fisier cu termenul tradus
     else:
