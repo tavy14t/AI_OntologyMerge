@@ -1,15 +1,4 @@
-import aiml
-import signal
-import crc16
-import sys
-import time
-import re
-import urllib2
-import json
-import os
 import requests
-import json
-import random
 from lxml import html
 from unidecode import unidecode
 

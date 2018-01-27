@@ -53,5 +53,6 @@ def get_merged_ontology_path(ont_path_1: str, ont_path_2: str, relations: typing
                 str:                            The path to the resulting ontology.
         """
         ont_path_res = rf'{os.path.splitext(ont_path_1)[0]}_{os.path.split(ont_path_2)[1]}'
-        Conceptualization.mergeOntologies(ont_path_1, ont_path_2, relations, ont_path_res)
+        Conceptualization.mergeOntologies(
+            ont_path_1, ont_path_2, relations, ont_path_res)
         return ont_path_res
