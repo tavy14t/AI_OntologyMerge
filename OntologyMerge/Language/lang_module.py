@@ -2,6 +2,7 @@ from googletrans import Translator
 import requests
 from bs4 import BeautifulSoup
 
+
 def compute_name_score(str1, str2):
     # Names shorter than 3 letters are ignored
     if len(str1) < 3 or len(str2) < 3:
@@ -69,7 +70,8 @@ def get_definition(term):
     translation = translator.translate(term, dest='en')
     translation = remove_morph_words(translation.text.split())
 
-    response = requests.get('https://www.vocabulary.com/dictionary/' + translation[0])
+    response = requests.get(
+        'https://www.vocabulary.com/dictionary/' + translation[0])
     soup = BeautifulSoup(response.content, 'html.parser')
 
     try:
@@ -96,9 +98,10 @@ def remove_morph_words(wordlist):
     output = []
     for word in wordlist:
         if word != 'a' and word != 'by' and word != 'the' and word != 'as' and word != 'an'\
-            and word != 'is' and word != 'of' and word != 'in' and word != 'and':
-                output.append(word)
+                and word != 'is' and word != 'of' and word != 'in' and word != 'and':
+            output.append(word)
     return output
+
 
 def get_match_score(str1, str2):
     namescore = compute_name_score(str1, str2)
@@ -107,19 +110,20 @@ def get_match_score(str1, str2):
         namescore = 1
     if defscore == 0:
         defscore = 1
-    return namescore**(1/2) * defscore *2
+    return namescore**(1 / 2) * defscore * 2
 
-def get_synonymus(l1,l2):
-    l=[]
-    for i in  l1:
+
+def get_synonymus(l1, l2):
+    l = []
+    for i in l1:
         for j in l2:
-            if (get_match_score(i,j))>= 12:
-                l.append((i,"is_synonymous",j))
+            if (get_match_score(i, j)) >= 12:
+                l.append((i, "is_synonymous", j))
     return l
 
 
-#Exemplu:
+# Exemplu:
 
 #l1 = ["vesel","prieten"]
 #l2 = ["amic","trist"]
-#print(get_synonymus(l1,l2))
+# print(get_synonymus(l1,l2))

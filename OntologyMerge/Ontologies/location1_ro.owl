@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<rdf:RDF xml:base="file://E:\Tools\PyCharm Projects\OntologyMerge\Ontologies\location1.owl"
-         xmlns="file://E:\Tools\PyCharm Projects\OntologyMerge\Ontologies\location1.owl#"
+<rdf:RDF xml:base="file://location1.owl"
+         xmlns="file://location1.owl#"
          xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
          xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
          xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"

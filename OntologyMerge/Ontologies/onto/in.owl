@@ -8,36 +8,36 @@
 
 <owl:Ontology rdf:about="file://M:\Inteligenta_Artificiala\AI_OntologyMerge\Conceptualizare//onto/2.owl"/>
 
-<owl:Class rdf:about="#Entitate">
+<owl:Class rdf:about="#Entity">
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
 </owl:Class>
 
-<owl:Class rdf:about="#In_viata">
-  <rdfs:subClassOf rdf:resource="#Entitate"/>
+<owl:Class rdf:about="#Alive">
+  <rdfs:subClassOf rdf:resource="#Entity"/>
 </owl:Class>
 
-<owl:Class rdf:about="#Mort">
-  <rdfs:subClassOf rdf:resource="#Entitate"/>
+<owl:Class rdf:about="#Dead">
+  <rdfs:subClassOf rdf:resource="#Entity"/>
 </owl:Class>
 
-<owl:Class rdf:about="#Mamifer">
-  <rdfs:subClassOf rdf:resource="#In_viata"/>
+<owl:Class rdf:about="#Mammal">
+  <rdfs:subClassOf rdf:resource="#Alive"/>
 </owl:Class>
 
-<owl:Class rdf:about="#Pasare">
-  <rdfs:subClassOf rdf:resource="#In_viata"/>
+<owl:Class rdf:about="#Bird">
+  <rdfs:subClassOf rdf:resource="#Alive"/>
 </owl:Class>
 
-<owl:Class rdf:about="#Pisica">
-  <rdfs:subClassOf rdf:resource="#Mamifer"/>
+<owl:Class rdf:about="#Cat">
+  <rdfs:subClassOf rdf:resource="#Mammal"/>
 </owl:Class>
 
-<owl:Class rdf:about="#Electric">
-  <rdfs:subClassOf rdf:resource="#Mort"/>
+<owl:Class rdf:about="#Electrical">
+  <rdfs:subClassOf rdf:resource="#Dead"/>
 </owl:Class>
 
-<owl:Class rdf:about="#Mecanic">
-  <rdfs:subClassOf rdf:resource="#Mort"/>
+<owl:Class rdf:about="#Mechanical">
+  <rdfs:subClassOf rdf:resource="#Dead"/>
 </owl:Class>
 
 

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<rdf:RDF xml:base="file://Ontologies/onto/1_2_ro.owl"
-         xmlns="file://Ontologies/onto/1_2_ro.owl#"
+<rdf:RDF xml:base="file://1_2_ro.owl"
+         xmlns="file://1_2_ro.owl#"
          xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
          xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
          xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
@@ -81,16 +81,16 @@
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
 </owl:Class>
 
-<owl:Class rdf:about="#In viata">
+<owl:Class rdf:about="#In_viata">
   <rdfs:subClassOf rdf:resource="#Entitate"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Mamifer">
-  <rdfs:subClassOf rdf:resource="#In viata"/>
+  <rdfs:subClassOf rdf:resource="#In_viata"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Pasare">
-  <rdfs:subClassOf rdf:resource="#In viata"/>
+  <rdfs:subClassOf rdf:resource="#In_viata"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Mort">

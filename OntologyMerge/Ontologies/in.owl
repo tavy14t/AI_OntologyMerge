@@ -9,40 +9,40 @@
 <owl:Ontology rdf:about="http://www.semanticweb.org/dante/ontologies/2018/0/untitled-ontology-9"/>
 
 <owl:ObjectProperty rdf:about="#isPartOf">
-  <rdfs:domain rdf:resource="#Stat"/>
-  <rdfs:range rdf:resource="#Tara"/>
+  <rdfs:domain rdf:resource="#State"/>
+  <rdfs:range rdf:resource="#Country"/>
 </owl:ObjectProperty>
 
-<owl:ObjectProperty rdf:about="#e_situat_in">
-  <rdfs:domain rdf:resource="#Oras"/>
-  <rdfs:range rdf:resource="#Tara"/>
+<owl:ObjectProperty rdf:about="#isLocatedIn">
+  <rdfs:domain rdf:resource="#City"/>
+  <rdfs:range rdf:resource="#Country"/>
 </owl:ObjectProperty>
 
 <owl:ObjectProperty rdf:about="#isCapitalOf">
-  <rdfs:subPropertyOf rdf:resource="#e_situat_in"/>
+  <rdfs:subPropertyOf rdf:resource="#isLocatedIn"/>
 </owl:ObjectProperty>
 
-<owl:Class rdf:about="#Oras">
-  <rdfs:subClassOf rdf:resource="#Loc"/>
+<owl:Class rdf:about="#City">
+  <rdfs:subClassOf rdf:resource="#Place"/>
 </owl:Class>
 
-<owl:Class rdf:about="#Stat">
-  <rdfs:subClassOf rdf:resource="#Loc"/>
+<owl:Class rdf:about="#State">
+  <rdfs:subClassOf rdf:resource="#Place"/>
 </owl:Class>
 
 <owl:ObjectProperty rdf:about="#borders">
-  <rdfs:domain rdf:resource="#Tara"/>
-  <rdfs:range rdf:resource="#Tara"/>
+  <rdfs:domain rdf:resource="#Country"/>
+  <rdfs:range rdf:resource="#Country"/>
 </owl:ObjectProperty>
 
-<owl:Class rdf:about="#Tara">
-  <rdfs:subClassOf rdf:resource="#Loc"/>
+<owl:Class rdf:about="#Country">
+  <rdfs:subClassOf rdf:resource="#Place"/>
 </owl:Class>
 
-<owl:Class rdf:about="#Loc"/>
+<owl:Class rdf:about="#Place"/>
 
 <owl:DatatypeProperty rdf:about="#population">
-  <rdfs:domain rdf:resource="#Loc"/>
+  <rdfs:domain rdf:resource="#Place"/>
   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
 </owl:DatatypeProperty>
 
