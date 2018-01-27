@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<rdf:RDF xml:base="file://E:\Tools\PyCharm Projects\OntologyMerge\Ontologies\location1_ro_location2_ro.owl"
+         xmlns="file://E:\Tools\PyCharm Projects\OntologyMerge\Ontologies\location1_ro_location2_ro.owl#"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#">
+
+<owl:ObjectProperty rdf:about="#echivalent">
+  <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:ObjectProperty>
+
+<owl:Class rdf:about="#Loc">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Oras">
+  <rdfs:subClassOf rdf:resource="#Loc"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Stat">
+  <rdfs:subClassOf rdf:resource="#Loc"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Tara">
+  <rdfs:subClassOf rdf:resource="#Loc"/>
+</owl:Class>
+
+
+</rdf:RDF>

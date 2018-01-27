@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<rdf:RDF xml:base="file://M:\Inteligenta_Artificiala\AI_OntologyMerge\Conceptualizare//onto/2.owl"
+         xmlns="file://M:\Inteligenta_Artificiala\AI_OntologyMerge\Conceptualizare//onto/2.owl#"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#">
+
+<owl:Ontology rdf:about="file://M:\Inteligenta_Artificiala\AI_OntologyMerge\Conceptualizare//onto/2.owl"/>
+
+<owl:Class rdf:about="#Entity">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Alive">
+  <rdfs:subClassOf rdf:resource="#Entity"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Dead">
+  <rdfs:subClassOf rdf:resource="#Entity"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Mammal">
+  <rdfs:subClassOf rdf:resource="#Alive"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Bird">
+  <rdfs:subClassOf rdf:resource="#Alive"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Cat">
+  <rdfs:subClassOf rdf:resource="#Mammal"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Electriccal">
+  <rdfs:subClassOf rdf:resource="#Dead"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Mechanical">
+  <rdfs:subClassOf rdf:resource="#Dead"/>
+</owl:Class>
+
+
+</rdf:RDF>

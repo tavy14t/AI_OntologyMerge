@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<rdf:RDF xml:base="file://E:\Tools\PyCharm Projects\OntologyMerge\Ontologies\test_1_test_2.owl"
+         xmlns="file://E:\Tools\PyCharm Projects\OntologyMerge\Ontologies\test_1_test_2.owl#"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#">
+
+<owl:ObjectProperty rdf:about="#echivalent">
+  <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:ObjectProperty>
+
+
+</rdf:RDF>

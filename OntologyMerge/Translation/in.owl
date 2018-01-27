@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<rdf:RDF xml:base="http://www.semanticweb.org/clim_/ontologies/2017/11/untitled-ontology-11"
+         xmlns="http://www.semanticweb.org/clim_/ontologies/2017/11/untitled-ontology-11#"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#">
+
+<owl:Ontology rdf:about="http://www.semanticweb.org/clim_/ontologies/2017/11/untitled-ontology-11"/>
+
+<owl:ObjectProperty rdf:about="#0-20mmHG">
+  <rdfs:comment></rdfs:comment>
+  <rdfs:domain rdf:resource="#Cranium"/>
+  <rdfs:range rdf:resource="#Intracranial_space"/>
+  <rdfs:subPropertyOf rdf:resource="#Physiological_oscillations"/>
+</owl:ObjectProperty>
+
+<owl:Class rdf:about="#Cranium">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Intracranial_space">
+  <rdfs:subClassOf rdf:resource="#Cranium"/>
+</owl:Class>
+
+<owl:ObjectProperty rdf:about="#Physiological_oscillations">
+  <rdfs:domain rdf:resource="#Cranium"/>
+  <rdfs:range rdf:resource="#Intracranial_space"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#10-15mmHG">
+  <rdfs:comment></rdfs:comment>
+  <rdfs:domain rdf:resource="#Intracranial_space"/>
+  <rdfs:range rdf:resource="#Intracranial_space"/>
+  <rdfs:subPropertyOf rdf:resource="#Intracranial pressure"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#Intracranial pressure">
+  <rdfs:domain rdf:resource="#Cranium"/>
+  <rdfs:range rdf:resource="#Intracranial_space"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#100-150ml">
+  <rdfs:range rdf:resource="#L.C.R"/>
+  <rdfs:range rdf:resource="#L.I."/>
+  <rdfs:range rdf:resource="#Blood"/>
+  <rdfs:domain rdf:resource="#Intracranial_space"/>
+</owl:ObjectProperty>
+
+<owl:Class rdf:about="#L.C.R">
+  <rdfs:subClassOf rdf:resource="#Intracranial_space"/>
+</owl:Class>
+
+<owl:Class rdf:about="#L.I.">
+  <rdfs:subClassOf rdf:resource="#Brain"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Blood">
+  <rdfs:subClassOf rdf:resource="#Intracranial_space"/>
+</owl:Class>
+
+<owl:ObjectProperty rdf:about="#1250cm3">
+  <rdfs:domain rdf:resource="#Brain"/>
+  <rdfs:range rdf:resource="#Brain"/>
+</owl:ObjectProperty>
+
+<owl:Class rdf:about="#Brain">
+  <rdfs:subClassOf rdf:resource="#Intracranial_space"/>
+</owl:Class>
+
+<owl:ObjectProperty rdf:about="#non-extensible_in_adult">
+  <rdfs:domain rdf:resource="#Cranium"/>
+  <rdfs:range rdf:resource="#Cranium"/>
+  <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#peste_10-15mmHG">
+  <rdfs:comment></rdfs:comment>
+  <rdfs:domain rdf:resource="#Intracranial_space"/>
+  <rdfs:range rdf:resource="#Intracranial_space"/>
+  <rdfs:subPropertyOf rdf:resource="#Intracranial pressure"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#rigid">
+  <rdfs:range rdf:resource="#Cranium"/>
+  <rdfs:domain rdf:resource="#Cranium"/>
+  <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#individual_gender_variations">
+  <rdfs:range rdf:resource="#Cranium"/>
+  <rdfs:domain rdf:resource="#Cranium"/>
+  <rdfs:subPropertyOf rdf:resource="#constant_volume_approx._1500cm3"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#constant_volume_approx._1500cm3">
+  <rdfs:domain rdf:resource="#Cranium"/>
+  <rdfs:range rdf:resource="#Cranium"/>
+  <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+</owl:ObjectProperty>
+
+<owl:Class rdf:about="#Arterial">
+  <rdfs:subClassOf rdf:resource="#Blood"/>
+</owl:Class>
+
+<owl:Class rdf:about="#epiphysis_gland">
+  <rdfs:subClassOf rdf:resource="#Brain"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Glie">
+  <rdfs:subClassOf rdf:resource="#Brain"/>
+</owl:Class>
+
+<owl:Class rdf:about="#neurons">
+  <rdfs:subClassOf rdf:resource="#Brain"/>
+</owl:Class>
+
+<owl:Class rdf:about="#walls_of_blood_vessels">
+  <rdfs:subClassOf rdf:resource="#Brain"/>
+</owl:Class>
+
+<owl:Class rdf:about="#venous">
+  <rdfs:subClassOf rdf:resource="#Blood"/>
+</owl:Class>
+
+<owl:Class rdf:about="#meninge">
+  <rdfs:subClassOf rdf:resource="#Brain"/>
+</owl:Class>
+
+<owl:Class rdf:about="#the_roots_of_the_cranial_nerves">
+  <rdfs:subClassOf rdf:resource="#Brain"/>
+</owl:Class>
+
+
+</rdf:RDF>

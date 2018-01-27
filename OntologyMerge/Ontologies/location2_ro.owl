@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<rdf:RDF xml:base="http://www.semanticweb.org/dante/ontologies/2018/0/untitled-ontology-9"
+         xmlns="http://www.semanticweb.org/dante/ontologies/2018/0/untitled-ontology-9#"
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#">
+
+<owl:Ontology rdf:about="http://www.semanticweb.org/dante/ontologies/2018/0/untitled-ontology-9"/>
+
+<owl:ObjectProperty rdf:about="#isPartOf">
+  <rdfs:domain rdf:resource="#Stat"/>
+  <rdfs:range rdf:resource="#Tara"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#e situat in">
+  <rdfs:domain rdf:resource="#Oras"/>
+  <rdfs:range rdf:resource="#Tara"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#isCapitalOf">
+  <rdfs:subPropertyOf rdf:resource="#e situat in"/>
+</owl:ObjectProperty>
+
+<owl:Class rdf:about="#Oras">
+  <rdfs:subClassOf rdf:resource="#Loc"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Stat">
+  <rdfs:subClassOf rdf:resource="#Loc"/>
+</owl:Class>
+
+<owl:ObjectProperty rdf:about="#borders">
+  <rdfs:domain rdf:resource="#Tara"/>
+  <rdfs:range rdf:resource="#Tara"/>
+</owl:ObjectProperty>
+
+<owl:Class rdf:about="#Tara">
+  <rdfs:subClassOf rdf:resource="#Loc"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Loc"/>
+
+<owl:DatatypeProperty rdf:about="#population">
+  <rdfs:domain rdf:resource="#Loc"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+</owl:DatatypeProperty>
+
+
+</rdf:RDF>
